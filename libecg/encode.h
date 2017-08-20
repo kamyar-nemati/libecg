@@ -10,6 +10,7 @@
  * Email: <u>kamyarnemati at gmail.com</u>
  *
  * Created on 20 February 2017, 20:13
+ * C++ 14
  */
 
 #ifndef ENCODE_H

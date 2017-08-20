@@ -7,9 +7,10 @@
 /* 
  * File:   base.h
  * Author: kamyar
- * Email: <u>kamyarnemati@gmail.com</u>
+ * Email: <u>kamyarnemati at gmail.com</u>
  *
  * Created on 20 February 2017, 20:13
+ * C++ 14
  */
 
 #ifndef BASE_H
