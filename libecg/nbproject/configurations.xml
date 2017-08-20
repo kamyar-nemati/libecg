@@ -4,6 +4,11 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>base.h</itemPath>
+      <itemPath>decode.h</itemPath>
+      <itemPath>encode.h</itemPath>
+      <itemPath>lib.h</itemPath>
+      <itemPath>utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,6 +17,10 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>base.cpp</itemPath>
+      <itemPath>decode.cpp</itemPath>
+      <itemPath>encode.cpp</itemPath>
+      <itemPath>utils.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -37,6 +46,24 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="base.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="base.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="decode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="decode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="encode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="3">
       <toolsSet>
@@ -60,6 +87,24 @@
         <archiverTool>
         </archiverTool>
       </compileType>
+      <item path="base.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="base.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="decode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="decode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="encode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="encode.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>
