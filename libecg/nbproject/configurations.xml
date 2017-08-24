@@ -5,8 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>base.h</itemPath>
-      <itemPath>decode.h</itemPath>
-      <itemPath>encode.h</itemPath>
+      <itemPath>decoder.h</itemPath>
+      <itemPath>encoder.h</itemPath>
       <itemPath>lib.h</itemPath>
       <itemPath>utils.h</itemPath>
     </logicalFolder>
@@ -18,8 +18,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>base.cpp</itemPath>
-      <itemPath>decode.cpp</itemPath>
-      <itemPath>encode.cpp</itemPath>
+      <itemPath>decoder.cpp</itemPath>
+      <itemPath>encoder.cpp</itemPath>
       <itemPath>utils.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -53,13 +53,13 @@
       </item>
       <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="decoder.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decode.h" ex="false" tool="3" flavor2="0">
+      <item path="decoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="encode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="encoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="encode.h" ex="false" tool="3" flavor2="0">
+      <item path="encoder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -96,13 +96,13 @@
       </item>
       <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="decoder.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decode.h" ex="false" tool="3" flavor2="0">
+      <item path="decoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="encode.cpp" ex="false" tool="1" flavor2="0">
+      <item path="encoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="encode.h" ex="false" tool="3" flavor2="0">
+      <item path="encoder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib.h" ex="false" tool="3" flavor2="0">
       </item>

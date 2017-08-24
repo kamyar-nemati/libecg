@@ -5,7 +5,7 @@
  */
 
 /* 
- * File:   decode.h
+ * File:   decoder.h
  * Author: kamyar
  * Email: <u>kamyarnemati at gmail.com</u>
  *
@@ -13,8 +13,8 @@
  * C++ 14
  */
 
-#ifndef DECODE_H
-#define DECODE_H
+#ifndef DECODER_H
+#define DECODER_H
 
 #include "base.h"
 
@@ -23,7 +23,7 @@ namespace libecg {                                        //ecg data compression
     /**
      * @description This is a derived class from <b>Base</b> class. It provides 
      * decompression algorithms to decode any compressed ECG signal dataset by 
-     * the <b>Encode</b> class.
+     * the <b>Encoder</b> class.
      * This class accepts either a string of binaries, a list of compressed 
      * data in decimal form, or a path to file that contains the compressed 
      * data.
@@ -31,12 +31,12 @@ namespace libecg {                                        //ecg data compression
      * @author Kamyar Nemati
      * @Email <u>kamyarnemati at gmail.com</u>
      */
-    class Decode : public Base {                             //derived from Base
+    class Decoder : public Base {                            //derived from Base
         //private section------------------------------------------------------/
     private:
-        Decode() = delete;                     //default constructor is disabled
-        Decode(const Decode& that) = delete;      //copy constructor is disabled
-        Decode& operator=(const Decode&) = delete;   //assignment is not allowed
+        Decoder() = delete;                    //default constructor is disabled
+        Decoder(const Decoder& that) = delete;    //copy constructor is disabled
+        Decoder& operator=(const Decoder&) = delete; //assignment is not allowed
         
         volatile pList reconstructed;           //holds the decompressed dataset
         
@@ -62,7 +62,7 @@ namespace libecg {                                        //ecg data compression
         //public section-------------------------------------------------------/
     public:
         /**
-         * @description <b>Decode</b> class initialisation by the list of 
+         * @description <b>Decoder</b> class initialisation by the list of 
          * compressed dataset in decimal form. The following parameters needed.
          * 
          * @param <i>const unsigned int&</i> <b>dataset_len</b> Length of the 
@@ -71,13 +71,13 @@ namespace libecg {                                        //ecg data compression
          * compressed dataset list in decimal form.
          * @param <i>bool& stat</i> <b>stat</b> Returns initialisation status.
          */
-        explicit Decode(
+        explicit Decoder(
             const unsigned int& dataset_len, 
             const pList& dataset_lst, 
             bool& stat
         );                                              //overloaded constructor
         /**
-         * @description <b>Decode</b> class initialisation by the binary 
+         * @description <b>Decoder</b> class initialisation by the binary 
          * string of compressed data directly. The following parameters are 
          * required.
          * 
@@ -85,24 +85,24 @@ namespace libecg {                                        //ecg data compression
          * represents the compressed ECG signal.
          * @param <i>bool& stat</i> <b>stat</b> Returns initialisation status.
          */
-        explicit Decode(
+        explicit Decoder(
             const std::string& sequence, 
             bool& stat
         );                                              //overloaded constructor
         /**
-         * @description <b>Decode</b> class initialisation by the file that 
+         * @description <b>Decoder</b> class initialisation by the file that 
          * represents the compressed data. The following parameters are needed.
          * 
          * @param <i>const string&</i> <b>path</b> The path to the file.
          * @param <i>STREAM_TYPE</i> <b>t</b> Read type.
          * @param <i>bool& stat</i> <b>stat</b> Returns initialisation status.
          */
-        explicit Decode(
+        explicit Decoder(
             const std::string& path, 
             STREAM_TYPE t, 
             bool& stat
         );                                                         //constructor
-        ~Decode();                                                  //destructor
+        ~Decoder();                                                 //destructor
         
         /**
          * @description This function is not supported.
@@ -148,5 +148,5 @@ namespace libecg {                                        //ecg data compression
     };
 }
 
-#endif /* DECODE_H */
+#endif /* DECODER_H */
 

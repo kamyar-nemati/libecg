@@ -25,7 +25,7 @@ namespace libecg {                                        //ecg data compression
     
     /**
      * @description This is a 'Mixin' abstract calss which provides basic 
-     * structure to classes <b>Encode</b> and <b>Decode</b>. This class 
+     * structure to classes <b>Encoder</b> and <b>Decoder</b>. This class 
      * therefore is not meant to be instantiated. Functional behaviour for 
      * functions <b>encode()</b> and <b>decode()</b> must be defined in derived 
      * classes.

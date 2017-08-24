@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-#include "encode.h"
+#include "encoder.h"
 
-libecg::Encode::Encode(
+libecg::Encoder::Encoder(
         const unsigned int& dataset_len, 
         const std::string& dataset_path, 
         const unsigned int& bitsThreshold, 
@@ -18,7 +18,7 @@ libecg::Encode::Encode(
     std::printf("- Dataset length: %u\n", dataset_len); //Debugging
     std::printf("- Threshold: %u\n", bitsThreshold); //Debugging
     std::printf("- Aperture: %u\n", aperture); //Debugging
-    std::printf("Initialising Encode...\n"); //Debugging
+    std::printf("Initialising Encoder...\n"); //Debugging
     //Base class' attributes
     this->initialiseDataset(dataset_len);                    //re-initialisation
 //    this->set_bitsOriginal(0);                  //will be re-initialised later
@@ -31,7 +31,7 @@ libecg::Encode::Encode(
     this->sequence = "";
     stat = this->shapeThreshold() && this->read(dataset_path);
     if (stat) {
-        std::printf("Encode object initialised by %d samples.\n", this->getDatasetLen()); //Debugging
+        std::printf("Encoder object initialised by %d samples.\n", this->getDatasetLen()); //Debugging
         //Analysing the original dataset
         std::printf("Further analysis:\n"); //Debugging
         int min, max, bit;
@@ -41,17 +41,17 @@ libecg::Encode::Encode(
         std::printf("- The total number of %d bits required to represent the entire dataset.\n", bit * this->getDatasetLen()); //Debugging
         //-end-
     } else {
-        std::printf("Encode object initialisation failure.\n"); //Debugging
+        std::printf("Encoder object initialisation failure.\n"); //Debugging
     }
     //-------------------------------------------------------------------------/
 }
 
-libecg::Encode::~Encode() {
+libecg::Encoder::~Encoder() {
     this->deleteDataset();
     delete this->compressed;
 }
 
-const bool libecg::Encode::read(const std::string& dataset_path) {
+const bool libecg::Encoder::read(const std::string& dataset_path) {
     std::printf("Reading data...\n"); //Debugging
     try {
         std::ifstream infile(dataset_path);
@@ -75,7 +75,7 @@ const bool libecg::Encode::read(const std::string& dataset_path) {
     return true;
 }
 
-const bool libecg::Encode::losslessCompression() {
+const bool libecg::Encoder::losslessCompression() {
     //derive embedded data (original sample bits)------------------------------/
     int sampleMin = 0, sampleMax = 0;
     if(!this->originalMinMax(sampleMin, sampleMax)) { //Find the smallest and the largest sample in the original dataset.
@@ -114,7 +114,7 @@ const bool libecg::Encode::losslessCompression() {
     return true;
 }
 
-const bool libecg::Encode::lossyCompressionFilter() {
+const bool libecg::Encoder::lossyCompressionFilter() {
     //Lossy Compression Filter algorithm---------------------------------------/
     try {
         //-start-
@@ -150,7 +150,7 @@ const bool libecg::Encode::lossyCompressionFilter() {
     return this->redundantErrorEliminator();
 }
 
-const bool libecg::Encode::redundantErrorEliminator() {
+const bool libecg::Encoder::redundantErrorEliminator() {
     //Redundant Error Eliminator algorithm-------------------------------------/
     try {
         //-start-
@@ -212,7 +212,7 @@ const bool libecg::Encode::redundantErrorEliminator() {
     return this->errorCountController();
 }
 
-const bool libecg::Encode::errorCountController() {
+const bool libecg::Encoder::errorCountController() {
     //Get required data--------------------------------------------------------/
     int maxErrorNumber = (int)std::pow(2, this->get_bitsThreshold());
     //Error Count Controller algorithm-----------------------------------------/
@@ -250,7 +250,7 @@ const bool libecg::Encode::errorCountController() {
     return true;
 }
 
-const bool libecg::Encode::sampleScaleDown() {
+const bool libecg::Encoder::sampleScaleDown() {
     //Sample Scale Down algorithm----------------------------------------------/
     try {
         //-start-
@@ -288,7 +288,7 @@ const bool libecg::Encode::sampleScaleDown() {
     return true;
 }
 
-void libecg::Encode::writeInfo() const {
+void libecg::Encoder::writeInfo() const {
     std::printf("Embedding additional data...\n"); //Debugging
     this->compressed->push_back(this->get_bitsOriginal()); // Write the number of bits required to represent an original sample to the compressed ECG.
     this->compressed->push_back(this->get_bitsScaled()); // Write the number of bits required to represent a scaled original sample to the compressed ECG.
@@ -296,7 +296,7 @@ void libecg::Encode::writeInfo() const {
     this->compressed->push_back(this->get_lossyEnabled()); // Write the Lossy Compression Filter indicator bit to the compressed ECG.
 }
 
-const bool libecg::Encode::translate() {
+const bool libecg::Encoder::translate() {
     std::printf("Translating %d decimal items into bits...\n", (int)this->compressed->size()); //Debugging
     std::string str_designatedSample = "";
     std::string str_bitsOriginal = "";
@@ -363,7 +363,7 @@ const bool libecg::Encode::translate() {
     return true;
 }
 
-const bool libecg::Encode::encode() {
+const bool libecg::Encoder::encode() {
     std::printf("Compressing...\n"); //Debugging
     if (!this->losslessCompression()) {
         return false;
@@ -384,7 +384,7 @@ const bool libecg::Encode::encode() {
     return true;
 }
 
-const bool libecg::Encode::originalMinMax(int& min, int& max) const {
+const bool libecg::Encoder::originalMinMax(int& min, int& max) const {
     try {
         min = INT_MAX;
         max = INT_MIN;
@@ -403,7 +403,7 @@ const bool libecg::Encode::originalMinMax(int& min, int& max) const {
     return true;
 }
 
-const bool libecg::Encode::compressedMinMax(int& min, int& max) const {
+const bool libecg::Encoder::compressedMinMax(int& min, int& max) const {
     try {
         pList tmp = new std::list<int>();
         int currentSample = *this->compressed->begin();
@@ -426,7 +426,7 @@ const bool libecg::Encode::compressedMinMax(int& min, int& max) const {
     return true;
 }
 
-const bool libecg::Encode::writeAsBin(const std::string& path) const {
+const bool libecg::Encoder::writeAsBin(const std::string& path) const {
     try {
         std::ofstream outfile;
         outfile.open(path);
@@ -439,7 +439,7 @@ const bool libecg::Encode::writeAsBin(const std::string& path) const {
     return true;
 }
 
-const bool libecg::Encode::writeAsDec(const std::string& path) const {
+const bool libecg::Encoder::writeAsDec(const std::string& path) const {
     std::string str = "";
     std::string line;
     try {
@@ -459,27 +459,27 @@ const bool libecg::Encode::writeAsDec(const std::string& path) const {
     return true;
 }
 
-void libecg::Encode::getOriginal(pList& lst) const {
+void libecg::Encoder::getOriginal(pList& lst) const {
     for (int i = 0; i < this->getDatasetLen(); ++i) {
         lst->push_back(this->getDatasetAt(i));
     }
 }
 
-void libecg::Encode::getCompressed(pList& lst) const {
+void libecg::Encoder::getCompressed(pList& lst) const {
     for (std::list<int>::const_iterator it = this->compressed->begin(); it != this->compressed->end(); ++it) {
         lst->push_back(*it);
     }
 }
 
-const float libecg::Encode::getCompressionRatio() const {
+const float libecg::Encoder::getCompressionRatio() const {
     return float(this->getDatasetLen()) / (float)this->compressed->size();
 }
 
-const std::string libecg::Encode::getBinarySequeneCompressed() const {
+const std::string libecg::Encoder::getBinarySequeneCompressed() const {
     return this->sequence;
 }
 
-const float libecg::Encode::getBinarySequeneCompressionRatio() const {
+const float libecg::Encoder::getBinarySequeneCompressionRatio() const {
     int originalMin, originalMax;
     if (!this->originalMinMax(originalMin, originalMax)) {
         return std::numeric_limits<float>::quiet_NaN();
@@ -491,7 +491,7 @@ const float libecg::Encode::getBinarySequeneCompressionRatio() const {
     return ratio;
 }
 
-const bool libecg::Encode::write(const std::string& path, STREAM_TYPE t) const {
+const bool libecg::Encoder::write(const std::string& path, STREAM_TYPE t) const {
     if (t == STREAM_TYPE::BINARY) {
         return this->writeAsBin(path);
     }

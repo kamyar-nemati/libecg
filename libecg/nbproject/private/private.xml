@@ -4,4 +4,19 @@
         <activeConfTypeElem>3</activeConfTypeElem>
         <activeConfIndexElem>1</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/kamyar/Projects/libecg/libecg/encoder.cpp</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/decoder.h</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/utils.cpp</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/lib.h</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/base.cpp</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/decoder.cpp</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/utils.h</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/base.h</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/encoder.h</file>
+            <file>file:/home/kamyar/Projects/libecg/libecg/nbproject/configurations.xml</file>
+        </group>
+    </open-files>
 </project-private>

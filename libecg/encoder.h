@@ -5,7 +5,7 @@
  */
 
 /* 
- * File:   encode.h
+ * File:   encoder.h
  * Author: kamyar
  * Email: <u>kamyarnemati at gmail.com</u>
  *
@@ -13,8 +13,8 @@
  * C++ 14
  */
 
-#ifndef ENCODE_H
-#define ENCODE_H
+#ifndef ENCODER_H
+#define ENCODER_H
 
 #include "base.h"
 
@@ -31,12 +31,12 @@ namespace libecg {                                        //ecg data compression
      * @author Kamyar Nemati
      * @Email <u>kamyarnemati at gmail.com</u>
      */
-    class Encode : public Base {                             //derived from Base
+    class Encoder : public Base {                            //derived from Base
         //private section------------------------------------------------------/
     private:
-        Encode() = delete;                     //default constructor is disabled
-        Encode(const Encode& that) = delete;      //copy constructor is disabled
-        Encode& operator=(const Encode&) = delete;   //assignment is not allowed
+        Encoder() = delete;                    //default constructor is disabled
+        Encoder(const Encoder& that) = delete;    //copy constructor is disabled
+        Encoder& operator=(const Encoder&) = delete; //assignment is not allowed
         
         int aperture;        //the aperture value used to ignore adjacent errors
         volatile pList compressed; //compressed data that is processed gradually
@@ -69,7 +69,7 @@ namespace libecg {                                        //ecg data compression
         //public section-------------------------------------------------------/
     public:
         /**
-         * @description The <b>Encode</b> class needs to be initialised by the 
+         * @description The <b>Encoder</b> class needs to be initialised by the 
          * following parameters:
          * 
          * @param <i>const unsigned int&</i> <b>dataset_len</b> Number of 
@@ -81,14 +81,14 @@ namespace libecg {                                        //ecg data compression
          * @param <i>const unsigned int&</i> <b>aperture</b> The aperture size.
          * @param <i>bool&</i> <b>stat</b> Returns initialisation status.
          */
-        explicit Encode(
+        explicit Encoder(
             const unsigned int& dataset_len, 
             const std::string& dataset_path, 
             const unsigned int& bitsThreshold, 
             const unsigned int& aperture, 
             bool& stat
         );                                                         //constructor
-        ~Encode();                                                  //destructor
+        ~Encoder();                                                 //destructor
         
         /**
          * @description Perform the compression process.
@@ -104,13 +104,13 @@ namespace libecg {                                        //ecg data compression
         }                                       //decompression is not supported
         
         /**
-         * @description Use this function to get PRD from <b>Decode</b> class.
+         * @description Use this function to get PRD from <b>Decoder</b> class.
          * @param <i>pList& lst</i> <b>lst</b> Returns the original dataset as 
          * List.
          */
         void getOriginal(pList& lst) const;        //return the original dataset
         /**
-         * @description This function is meant to initialise the <b>Decode</b> 
+         * @description This function is meant to initialise the <b>Decoder</b> 
          * class by the compressed data list without the need to write to file.
          * @param <i>pList& lst</i> <b>lst</b> Returns the compressed dataset 
          * as List.
@@ -123,7 +123,7 @@ namespace libecg {                                        //ecg data compression
          */
         const float getCompressionRatio() const;   //calculate compression ratio
         /**
-         * @description This function is meant to initialise the <b>Decode</b> 
+         * @description This function is meant to initialise the <b>Decoder</b> 
          * class by the binary string of compressed data without the need to 
          * write to file.
          * @return <i>const string</i> Returns the compressed dataset as a 
@@ -153,5 +153,5 @@ namespace libecg {                                        //ecg data compression
     };
 }
 
-#endif /* ENCODE_H */
+#endif /* ENCODER_H */
 
