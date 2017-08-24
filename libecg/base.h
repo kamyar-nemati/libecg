@@ -36,8 +36,10 @@ namespace libecg {                                        //ecg data compression
     class Base {
         //private section------------------------------------------------------/
     private:
+        Base(Base&&) = delete;                    //move constructor is disabled
         Base(const Base& that) = delete;          //copy constructor is disabled
-        Base& operator=(const Base&) = delete;       //assignment is not allowed
+        Base& operator=(const Base&) = delete;             //copy is not allowed
+        Base& operator=(Base&&) = delete;                  //move is not allowed
         
         struct ThresholdRange {                          //theoretical threshold
             int min;                           //threshold range (minimum value)

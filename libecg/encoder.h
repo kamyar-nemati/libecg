@@ -35,8 +35,10 @@ namespace libecg {                                        //ecg data compression
         //private section------------------------------------------------------/
     private:
         Encoder() = delete;                    //default constructor is disabled
+        Encoder(Encoder&&) = delete;              //move constructor is disabled
         Encoder(const Encoder& that) = delete;    //copy constructor is disabled
-        Encoder& operator=(const Encoder&) = delete; //assignment is not allowed
+        Encoder& operator=(const Encoder&) = delete;       //copy is not allowed
+        Encoder& operator=(Encoder&&) = delete;            //move is not allowed
         
         int aperture;        //the aperture value used to ignore adjacent errors
         volatile pList compressed; //compressed data that is processed gradually

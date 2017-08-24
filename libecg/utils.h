@@ -31,8 +31,10 @@ namespace libecg {                                        //ecg data compression
     class Utils {
         //private section------------------------------------------------------/
     private:
+        Utils(Utils&&) = delete;
         Utils(const Utils& that) = delete;
         Utils& operator=(const Utils&) = delete;
+        Utils& operator=(Utils&&) = delete;
         
         static const unsigned int minBits(
             const int& min, 

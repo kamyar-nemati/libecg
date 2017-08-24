@@ -35,8 +35,10 @@ namespace libecg {                                        //ecg data compression
         //private section------------------------------------------------------/
     private:
         Decoder() = delete;                    //default constructor is disabled
+        Decoder(Decoder&&) = delete;              //move constructor is disabled
         Decoder(const Decoder& that) = delete;    //copy constructor is disabled
-        Decoder& operator=(const Decoder&) = delete; //assignment is not allowed
+        Decoder& operator=(const Decoder&) = delete;       //copy is not allowed
+        Decoder& operator=(Decoder&&) = delete;            //move is not allowed
         
         volatile pList reconstructed;           //holds the decompressed dataset
         
