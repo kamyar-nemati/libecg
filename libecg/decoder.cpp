@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 
-#include "decode.h"
+#include "decoder.h"
 
-libecg::Decode::Decode(
+libecg::Decoder::Decoder(
         const unsigned int& dataset_len, 
         const pList& dataset_lst, 
         bool& stat) : Base() {
     //-------------------------------------------------------------------------/
-    std::printf("Initialising Decode...\n"); //Debugging
+    std::printf("Initialising Decoder...\n"); //Debugging
     //Base class' attributes
     this->initialiseDataset(dataset_len);                    //re-initialisation
 //    this->set_bitsOriginal(0);                  //will be re-initialised later
@@ -22,18 +22,18 @@ libecg::Decode::Decode(
     this->reconstructed = new std::list<int>();
     stat = this->read(dataset_lst);
     if (stat) {
-        std::printf("Decode object initialised by %d items.\n", this->getDatasetLen()); //Debugging
+        std::printf("Decoder object initialised by %d items.\n", this->getDatasetLen()); //Debugging
     } else {
-        std::printf("Decode object initialisation failure.\n"); //Debugging
+        std::printf("Decoder object initialisation failure.\n"); //Debugging
     }
     //-------------------------------------------------------------------------/
 }
 
-libecg::Decode::Decode(
+libecg::Decoder::Decoder(
         const std::string& sequence, 
         bool& stat) : Base() {
     //-------------------------------------------------------------------------/
-    std::printf("Initialising Decode...\n"); //Debugging
+    std::printf("Initialising Decoder...\n"); //Debugging
     //Base class' attributes
 //    this->initialiseDataset(dataset_len);                  //re-initialisation
 //    this->set_bitsOriginal(0);                  //will be re-initialised later
@@ -44,19 +44,19 @@ libecg::Decode::Decode(
     this->reconstructed = new std::list<int>();
     stat = this->translate(sequence);
     if (stat) {
-        std::printf("Decode object initialised by %d bits.\n", (int)sequence.length()); //Debugging
+        std::printf("Decoder object initialised by %d bits.\n", (int)sequence.length()); //Debugging
     } else {
-        std::printf("Decode object initialisation failure.\n"); //Debugging
+        std::printf("Decoder object initialisation failure.\n"); //Debugging
     }
     //-------------------------------------------------------------------------/
 }
 
-libecg::Decode::Decode(
+libecg::Decoder::Decoder(
         const std::string& path, 
         STREAM_TYPE t, 
         bool& stat) : Base() {
     //-------------------------------------------------------------------------/
-    std::printf("Initialising Decode...\n"); //Debugging
+    std::printf("Initialising Decoder...\n"); //Debugging
     //Base class' attributes
 //    this->initialiseDataset(dataset_len);                  //re-initialisation
 //    this->set_bitsOriginal(0);                  //will be re-initialised later
@@ -67,19 +67,19 @@ libecg::Decode::Decode(
     this->reconstructed = new std::list<int>();
     stat = this->read(path, t);
     if (stat) {
-        std::printf("Decode object initialised.\n"); //Debugging
+        std::printf("Decoder object initialised.\n"); //Debugging
     } else {
-        std::printf("Decode object initialisation failure.\n"); //Debugging
+        std::printf("Decoder object initialisation failure.\n"); //Debugging
     }
     //-------------------------------------------------------------------------/
 }
 
-libecg::Decode::~Decode() {
+libecg::Decoder::~Decoder() {
     this->deleteDataset();
     delete this->reconstructed;
 }
 
-const bool libecg::Decode::read(const pList& dataset_lst) {
+const bool libecg::Decoder::read(const pList& dataset_lst) {
     std::printf("Reading data...\n"); //Debugging
     try {
         int i = 0;
@@ -97,7 +97,7 @@ const bool libecg::Decode::read(const pList& dataset_lst) {
     return true;
 }
 
-const bool libecg::Decode::read(const std::string path, STREAM_TYPE t) {
+const bool libecg::Decoder::read(const std::string path, STREAM_TYPE t) {
     if (t == STREAM_TYPE::BINARY) {
         return this->readAsBinary(path);
     }
@@ -107,7 +107,7 @@ const bool libecg::Decode::read(const std::string path, STREAM_TYPE t) {
     return false;
 }
 
-const bool libecg::Decode::readAsBinary(const std::string& path) {
+const bool libecg::Decoder::readAsBinary(const std::string& path) {
     bool stat = false;
     try {
         std::ifstream infile(path);
@@ -123,7 +123,7 @@ const bool libecg::Decode::readAsBinary(const std::string& path) {
     return stat;
 }
 
-const bool libecg::Decode::readAsDecimal(const std::string& path) {
+const bool libecg::Decoder::readAsDecimal(const std::string& path) {
     bool stat = false;
     try {
         std::list<int>* tmp = new std::list<int>();
@@ -145,7 +145,7 @@ const bool libecg::Decode::readAsDecimal(const std::string& path) {
     return stat;
 }
 
-const bool libecg::Decode::sampleScaleUp() {
+const bool libecg::Decoder::sampleScaleUp() {
     //Sample Scale Up algorithm------------------------------------------------/
     try {
         //-start-
@@ -176,7 +176,7 @@ const bool libecg::Decode::sampleScaleUp() {
     return true;
 }
 
-const bool libecg::Decode::redundantErrorRecovery() {
+const bool libecg::Decoder::redundantErrorRecovery() {
     //Redundant Error Recovery algorithm---------------------------------------/
     try {
         pList tmp = new std::list<int>();
@@ -216,7 +216,7 @@ const bool libecg::Decode::redundantErrorRecovery() {
     return true;
 }
 
-const bool libecg::Decode::decompression() {
+const bool libecg::Decoder::decompression() {
     //Decompression algorithm--------------------------------------------------/
     try {
         pList tmp = new std::list<int>();
@@ -253,7 +253,7 @@ const bool libecg::Decode::decompression() {
     return true;
 }
 
-const bool libecg::Decode::readInfo() {
+const bool libecg::Decoder::readInfo() {
     std::printf("Reading embedded data...\n"); //Debugging
     int i = this->getDatasetLen() - 1;
     this->set_lossyEnabled((this->getDatasetAt(i) == 1 ? true : false)); // Read the Lossy Compression Filter indicator bit from the compressed ECG.
@@ -267,7 +267,7 @@ const bool libecg::Decode::readInfo() {
     return this->shapeThreshold();
 }
 
-const bool libecg::Decode::translate(const std::string& sequence) {
+const bool libecg::Decoder::translate(const std::string& sequence) {
     std::printf("Translating %d bits...\n", (int)sequence.length()); //Debugging
     this->setDatasetLen(0); //Base class' attribute initialisation
     std::string buffer = sequence;
@@ -377,7 +377,7 @@ const bool libecg::Decode::translate(const std::string& sequence) {
     return true;
 }
 
-const bool libecg::Decode::decode() {
+const bool libecg::Decoder::decode() {
     std::printf("Decompressing...\n"); //Debugging
     if (!this->readInfo()) {
         return false;
@@ -397,13 +397,13 @@ const bool libecg::Decode::decode() {
     return true;
 }
 
-void libecg::Decode::getReconstructed(pList& lst) const {
+void libecg::Decoder::getReconstructed(pList& lst) const {
     for (std::list<int>::const_iterator it = this->reconstructed->begin(); it != this->reconstructed->end(); ++it) {
         lst->push_back(*it);
     }
 }
 
-const float libecg::Decode::getPercentRootMeanSquareDifference(const pList& originalSet) const {
+const float libecg::Decoder::getPercentRootMeanSquareDifference(const pList& originalSet) const {
     float prd = std::numeric_limits<float>::quiet_NaN();
     float num = 0, den = 0;
     try {
@@ -428,7 +428,7 @@ const float libecg::Decode::getPercentRootMeanSquareDifference(const pList& orig
     return prd;
 }
 
-const bool libecg::Decode::write(const std::string& path, STREAM_TYPE t) const {
+const bool libecg::Decoder::write(const std::string& path, STREAM_TYPE t) const {
     std::string str = "";
     std::string line;
     try {

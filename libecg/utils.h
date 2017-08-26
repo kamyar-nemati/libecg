@@ -23,7 +23,7 @@ namespace libecg {                                        //ecg data compression
     /**
      * @description This is a utility class. It provides some required 
      * functionalities to cater compression and decompression process needs for 
-     * <b>Encode</b> and <b>Decode</b>.
+     * <b>Encoder</b> and <b>Decoder</b>.
      * 
      * @author Kamyar Nemati
      * @Email <u>kamyarnemati at gmail.com</u>
@@ -31,8 +31,10 @@ namespace libecg {                                        //ecg data compression
     class Utils {
         //private section------------------------------------------------------/
     private:
+        Utils(Utils&&) = delete;
         Utils(const Utils& that) = delete;
         Utils& operator=(const Utils&) = delete;
+        Utils& operator=(Utils&&) = delete;
         
         static const unsigned int minBits(
             const int& min, 

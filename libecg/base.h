@@ -25,7 +25,7 @@ namespace libecg {                                        //ecg data compression
     
     /**
      * @description This is a 'Mixin' abstract calss which provides basic 
-     * structure to classes <b>Encode</b> and <b>Decode</b>. This class 
+     * structure to classes <b>Encoder</b> and <b>Decoder</b>. This class 
      * therefore is not meant to be instantiated. Functional behaviour for 
      * functions <b>encode()</b> and <b>decode()</b> must be defined in derived 
      * classes.
@@ -36,8 +36,10 @@ namespace libecg {                                        //ecg data compression
     class Base {
         //private section------------------------------------------------------/
     private:
+        Base(Base&&) = delete;                    //move constructor is disabled
         Base(const Base& that) = delete;          //copy constructor is disabled
-        Base& operator=(const Base&) = delete;       //assignment is not allowed
+        Base& operator=(const Base&) = delete;             //copy is not allowed
+        Base& operator=(Base&&) = delete;                  //move is not allowed
         
         struct ThresholdRange {                          //theoretical threshold
             int min;                           //threshold range (minimum value)
