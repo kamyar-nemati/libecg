@@ -13,6 +13,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>version</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -53,9 +54,9 @@
       </item>
       <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decoder.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="decoder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="decoder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="encoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -66,6 +67,8 @@
       <item path="utils.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="version" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="3">
@@ -96,9 +99,9 @@
       </item>
       <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="decoder.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="decoder.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="decoder.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="encoder.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -109,6 +112,8 @@
       <item path="utils.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="version" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
