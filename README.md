@@ -2,6 +2,16 @@
 Hybrid lossless and lossy compression technique for ECG signals
 
 ## Publication
+__Abstract:__ A single cycle of an ECG signal is composed of multiple segments. The QRS segment is considered as the most important segment for accurate diagnosis in many heart related disorders and this segment should be preserved against any major signal distortion during the process of compression. In this paper, a novel hybrid ECG signal data compression technique is proposed, in which lossless compression is applied on QRS segments and lossy compression is applied on other segments, without actually implementing any wave-recognition algorithm. Experimental results have shown that with the optimal selection of threshold and aperture size, it is possible to preserve the quality of QRS segments for enhancing the diagnostic capability with the reconstructed signal while achieving higher compression efficiency at the same time.
+
+_K. Nemati and K. Ramakrishnan, "Hybrid lossless and lossy compression technique for ECG signals," 2017 Third International Conference on Sensing, Signal Processing and Security (ICSSS), Chennai, India, 2017, pp. 450-455._
+
+_doi: 10.1109/SSPS.2017.8071639_
+
+_keywords: {Biomedical signal processing;Data compression;Electrocardiography},_
+
+URL: [http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8071639&isnumber=8071554](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8071639&isnumber=8071554)
+
 Sensing, Signal Processing and Security (ICSSS), 2017 Third International Conference on
 [IEEE Xplore](http://ieeexplore.ieee.org/document/8071639/) <http://ieeexplore.ieee.org/document/8071639/>
 
